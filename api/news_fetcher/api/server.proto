@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+option go_package = "github.com/hycka/news_fetcher/api/news_fetcher/api";
+option java_multiple_files = true;
+option java_package = "io.grpc.examples.routeguide";
+option java_outer_classname = "RouteGuideProto";
+
+package news_fetcher.api;
+
+// News fetch service
+service NewsFetcher{
+    rpc List(ID) returns (Posts){}
+	// Search News
+	rpc Search(Keyword) returns (Posts){}
+}
+
+message ID{
+    string id = 1;
+}
+
+message Post{
+	string id = 1;
+    string title = 2;
+    string content = 3;
+    int64 update_time = 4;
+	string websiteId = 5;
+	string websiteTitle = 6;
+}
+
+message Posts{
+    repeated Post posts = 1;
+}
+
+message Keyword{
+	string keyword = 1; 
+}
